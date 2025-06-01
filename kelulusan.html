@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Kelulusan - SDN 2 Duda Timur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e6f0fa;
+            color: #1a2a44; /* Biru navy tua */
+        }
+        header {
+            background-color: #1a2a44; /* Biru navy */
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        header img {
+            max-width: 120px;
+            height: auto;
+        }
+        header .school-name {
+            font-family: Georgia, serif;
+            font-size: 2em;
+            margin: 10px 0 5px 0;
+        }
+        .container {
+            width: 85%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #1a2a44;
+        }
+        .graduation-check {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #2e4057;
+            border-radius: 5px;
+        }
+        .graduation-check label {
+            font-weight: bold;
+            color: #1a2a44;
+        }
+        .graduation-check input {
+            padding: 5px;
+            margin: 5px 0;
+            width: 200px;
+        }
+        .graduation-check button {
+            background-color: #1a2a44;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .graduation-check button:hover {
+            background-color: #4a6fa5;
+        }
+        /* Styling untuk Pop-Up */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            overflow: auto; /* Tambah overflow auto supaya bisa discroll */
+        }
+        .modal-content {
+            background-color: white;
+            margin: 5% auto; /* Sesuaikan margin supaya lebih fleksibel */
+            padding: 20px;
+            border: 1px solid #2e4057;
+            width: 60%; /* Memperlebar modal */
+            max-width: 500px; /* Batas maksimum */
+            min-height: 300px; /* Minimal tinggi */
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            overflow-y: auto; /* Tambah scroll vertical kalau konten panjang */
+        }
+        .modal-content img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .modal-content .lulus {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 2.5em;
+            color: #28a745;
+            margin: 10px 0;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .modal-content .message {
+            font-size: 1.2em;
+            color: #1a2a44;
+            margin: 10px 0;
+            line-height: 1.5; /* Tambah spasi antar baris */
+        }
+        .modal-content .salam {
+            font-size: 1.1em;
+            color: #4a6fa5;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        .close-btn {
+            background-color: #1a2a44;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .close-btn:hover {
+            background-color: #4a6fa5;
+        }
+        /* Animasi Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f00;
+            top: -10px;
+            animation: fall linear infinite;
+            z-index: 2;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        .confetti:nth-child(2n) { background: #0f0; }
+        .confetti:nth-child(3n) { background: #00f; }
+        .confetti:nth-child(4n) { background: #ff0; }
+        .confetti:nth-child(5n) { background: #f0f; }
+        .confetti:nth-child(6n) { background: #0ff; }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo SDN 2 Duda Timur">
+        <div class="school-name">SDN 2 Duda Timur</div>
+        <h1>Cek Kelulusan Kelas 6</h1>
+    </header>
+    <div class="container">
+        <h2>Cek Status Kelulusan</h2>
+        <div class="graduation-check">
+            <label for="nisn">Masukkan Nomor Induk Siswa Nasional (NISN):</label><br>
+            <input type="text" id="nisn" placeholder="Contoh: 0139348737">
+            <button onclick="checkGraduation()">Cek Kelulusan</button>
+        </div>
+    </div>
+    <!-- Pop-Up Modal -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <img id="studentPhoto" src="" alt="Foto Siswa">
+            <div class="lulus">LULUS</div>
+            <div class="message" id="resultText"></div>
+            <div class="salam">Salam berbahagia keluarga SDN 2 Duda Timur</div>
+            <button class="close-btn" onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+    <footer>
+        <p>© 2025 SDN 2 Duda Timur. Hak cipta dilindungi.</p>
+    </footer>
+    <script>
+        function checkGraduation() {
+            const nisn = document.getElementById("nisn").value;
+            const modal = document.getElementById("resultModal");
+            const resultText = document.getElementById("resultText");
+            const studentPhoto = document.getElementById("studentPhoto");
+            // Data kelulusan berdasarkan NISN yang diberikan
+            const graduationData = {
+                "0139348737": { status: "lulus", message: "Selamat dan sukses, Devima Satya Maharani dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0139348737.jpg" },
+                "0127876673": { status: "lulus", message: "Selamat dan sukses, I Gede Dananjaya dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0127876673.jpg" },
+                "0124322238": { status: "lulus", message: "Selamat dan sukses, I Kadek Angga Dwipayana Putra dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0124322238.jpg" },
+                "0139292420": { status: "lulus", message: "Selamat dan sukses, I Kadek Arta Wiguna dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0139292420.jpg" },
+                "0137205290": { status: "lulus", message: "Selamat dan sukses, I Kadek Dwipayana Mahesa Putra dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0137205290.jpg" },
+                "0123868616": { status: "lulus", message: "Selamat dan sukses, I Kadek Risky Aditya Pratama dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0123868616.jpg" },
+                "3125259949": { status: "lulus", message: "Selamat dan sukses, I Ketut Agus Werdi Dana Putra dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_3125259949.jpg" },
+                "0139024242": { status: "lulus", message: "Selamat dan sukses, I Ketut Triyasa Arsa Sena dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0139024242.jpg" },
+                "0135379710": { status: "lulus", message: "Selamat dan sukses, I Ketut Wiranatha dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0135379710.jpg" },
+                "0127525010": { status: "lulus", message: "Selamat dan sukses, I Komang Mahendra Putra dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0127525010.jpg" },
+                "0121799775": { status: "lulus", message: "Selamat dan sukses, I Komang Oka Candra Yudiarta dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0121799775.jpg" },
+                "0126884321": { status: "lulus", message: "Selamat dan sukses, I Made Dandi Wijayantara dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0126884321.jpg" },
+                "0136519867": { status: "lulus", message: "Selamat dan sukses, I Made Ega Adi Wiguna dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0136519867.jpg" },
+                "0136731750": { status: "lulus", message: "Selamat dan sukses, I Wayan Ariantara Sastra Wiguna dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0136731750.jpg" },
+                "0131476437": { status: "lulus", message: "Selamat dan sukses, Ida Bagus Gede Kutriana Manuaba dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0131476437.jpg" },
+                "0135872923": { status: "lulus", message: "Selamat dan sukses, Ni Kadek Ana Alisa Putri dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0135872923.jpg" },
+                "0134768493": { status: "lulus", message: "Selamat dan sukses, Ni Komang Ayu Triana Lestari dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0134768493.jpg" },
+                "0129756227": { status: "lulus", message: "Selamat dan sukses, Ni Komang Intan dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0129756227.jpg" },
+                "0131097808": { status: "lulus", message: "Selamat dan sukses, Ni Komang Ritayanti dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0131097808.jpg" },
+                "0135422576": { status: "lulus", message: "Selamat dan sukses, Ni Made Indira Vinaya Maharani dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0135422576.jpg" },
+                "0122332960": { status: "lulus", message: "Selamat dan sukses, Ni Putu Chandra Cahyani Dewi dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0122332960.jpg" }
+            };
+            if (nisn in graduationData) {
+                studentPhoto.src = graduationData[nisn].photo;
+                resultText.innerHTML = `${graduationData[nisn].message}`;
+                modal.style.display = "block";
+                createConfetti();
+            } else {
+                studentPhoto.src = "";
+                resultText.innerHTML = "NISN tidak ditemukan. Silakan periksa kembali atau hubungi sekolah.";
+                modal.style.display = "block";
+                createConfetti();
+            }
+        }
+        function closeModal() {
+            const modal = document.getElementById("resultModal");
+            modal.style.display = "none";
+            // Hapus confetti saat modal ditutup
+            document.querySelectorAll('.confetti').forEach(confetti => confetti.remove());
+        }
+        function createConfetti() {
+            const confettiCount = 100;
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement("div");
+                confetti.className = "confetti";
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.animationDuration = Math.random() * 2 + 3 + "s";
+                document.body.appendChild(confetti);
+            }
+            // Hapus confetti setelah animasi selesai
+            setTimeout(() => document.querySelectorAll('.confetti').forEach(confetti => confetti.remove()), 5000);
+        }
+    </script>
+</body>
+</html>
