@@ -27,6 +27,15 @@
             font-size: 2em;
             margin: 10px 0 5px 0;
         }
+        header .running-text {
+            font-size: 0.9em;
+            margin: 5px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        header .running-text marquee {
+            display: inline-block;
+        }
         .container {
             width: 85%;
             margin: 20px auto;
@@ -88,6 +97,8 @@
             text-align: center;
             position: relative;
             overflow-y: auto; /* Tambah scroll vertical kalau konten panjang */
+            /* Latar bermotif samar */
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill="%23d3e0f0" fill-opacity="0.2"%3E%3Ccircle cx="50" cy="50" r="35"/%3E%3Ccircle cx="50" cy="50" r="25"/%3E%3C/g%3E%3C/svg%3E');
         }
         .modal-content img {
             max-width: 200px;
@@ -152,7 +163,9 @@
     <header>
         <img src="logo.png" alt="Logo SDN 2 Duda Timur">
         <div class="school-name">SDN 2 Duda Timur</div>
-        <h1>Cek Kelulusan Kelas 6</h1>
+        <div class="running-text">
+            <marquee behavior="scroll" direction="left" scrollamount="5">"Dasar Mantra Santi - Cerdas Berkarakter Mandiri Terampil Santu dan Berbudi Pekerti"</marquee>
+        </div>
     </header>
     <div class="container">
         <h2>Cek Status Kelulusan</h2>
