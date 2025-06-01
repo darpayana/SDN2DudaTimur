@@ -10,10 +10,10 @@
             margin: 0;
             padding: 0;
             background-color: #e6f0fa;
-            color: #1a2a44; /* Biru navy tua */
+            color: #1a2a44;
         }
         header {
-            background-color: #1a2a44; /* Biru navy */
+            background-color: #1a2a44;
             color: white;
             text-align: center;
             padding: 10px;
@@ -45,7 +45,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             text-align: center;
         }
-        h1, h2 {
+        h2 {
             color: #1a2a44;
         }
         .graduation-check {
@@ -53,7 +53,7 @@
             padding: 15px;
             border: 1px solid #2e4057;
             border-radius: 5px;
-            display: none; /* Sembunyikan form sampai countdown selesai */
+            display: none;
         }
         .graduation-check label {
             font-weight: bold;
@@ -75,12 +75,11 @@
         .graduation-check button:hover {
             background-color: #4a6fa5;
         }
-        /* Countdown Styling */
         .countdown {
             margin-top: 20px;
             padding: 20px;
             background: linear-gradient(135deg, #2e4057, #4a6fa5);
-            color: white; /* Ubah warna tulisan jadi putih */
+            color: white;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             animation: pulse 2s infinite;
@@ -98,10 +97,10 @@
             font-size: 1.8em;
             margin-bottom: 10px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.3); /* Latar transparan untuk judul */
+            background: rgba(255, 255, 255, 0.3);
             padding: 5px;
             border-radius: 5px;
-            color: white; /* Judul putih */
+            color: white;
         }
         .countdown .time-box {
             display: flex;
@@ -114,19 +113,18 @@
             letter-spacing: 2px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             padding: 5px 10px;
-            background: rgba(255, 255, 255, 0.2); /* Latar transparan untuk angka */
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
-            color: white; /* Angka putih */
+            color: white;
         }
         .countdown .label {
             font-size: 1.2em;
             margin-top: 5px;
-            background: rgba(255, 255, 255, 0.3); /* Latar transparan untuk label */
+            background: rgba(255, 255, 255, 0.3);
             padding: 2px 5px;
             border-radius: 3px;
-            color: white; /* Label putih */
+            color: white;
         }
-        /* Styling untuk Pop-Up */
         .modal {
             display: none;
             position: fixed;
@@ -190,7 +188,6 @@
         .close-btn:hover {
             background-color: #4a6fa5;
         }
-        /* Animasi Confetti */
         .confetti {
             position: fixed;
             width: 10px;
@@ -234,13 +231,12 @@
             <button onclick="checkGraduation()">Cek Kelulusan</button>
         </div>
     </div>
-    <!-- Pop-Up Modal -->
     <div id="resultModal" class="modal">
         <div class="modal-content">
-            <img id="studentPhoto" src="" alt="Foto Siswa">
-            <div class="lulus">LULUS</div>
+            <div id="studentPhotoContainer"></div>
+            <div class="lulus" id="statusText"></div>
             <div class="message" id="resultText"></div>
-            <div class="salam">Salam berbahagia keluarga SDN 2 Duda Timur</div>
+            <div class="salam" id="greetingText"></div>
             <button class="close-btn" onclick="closeModal()">Tutup</button>
         </div>
     </div>
@@ -248,24 +244,18 @@
         <p>© 2025 SDN 2 Duda Timur. Hak cipta dilindungi.</p>
     </footer>
     <script>
-        // Set target waktu (2 Juni 2025, 09:00 WITA = 08:00 WIB)
         const countdownDate = new Date("June 2, 2025 08:00:00").getTime();
-
-        // Update countdown setiap 1 detik
         const countdown = setInterval(function() {
             const now = new Date().getTime();
             const distance = countdownDate - now;
-
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
             document.getElementById("days").innerHTML = String(days).padStart(2, '0');
             document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
             document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
             document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
-
             if (distance < 0) {
                 clearInterval(countdown);
                 document.getElementById("countdown").style.display = "none";
@@ -276,14 +266,15 @@
         function checkGraduation() {
             const nisn = document.getElementById("nisn").value;
             const modal = document.getElementById("resultModal");
+            const statusText = document.getElementById("statusText");
             const resultText = document.getElementById("resultText");
-            const studentPhoto = document.getElementById("studentPhoto");
-            // Data kelulusan berdasarkan NISN yang diberikan
+            const studentPhotoContainer = document.getElementById("studentPhotoContainer");
+            const greetingText = document.getElementById("greetingText");
             const graduationData = {
                 "0139348737": { status: "lulus", message: "Selamat dan sukses, Devima Satya Maharani dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0139348737.jpg" },
                 "0127876673": { status: "lulus", message: "Selamat dan sukses, I Gede Dananjaya dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0127876673.jpg" },
                 "0124322238": { status: "lulus", message: "Selamat dan sukses, I Kadek Angga Dwipayana Putra dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0124322238.jpg" },
-                "0139292420": { status: "lulus", message: "Selamat dan sukses, I Kadek Arta Wiguna dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0139292420.jpg" },
+                "0137922420": { status: "lulus", message: "Selamat dan sukses, I Kadek Arta Wiguna dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0137922420.jpg" },
                 "0137205290": { status: "lulus", message: "Selamat dan sukses, I Kadek Dwipayana Mahesa Putra dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0137205290.jpg" },
                 "0123868616": { status: "lulus", message: "Selamat dan sukses, I Kadek Risky Aditya Pratama dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0123868616.jpg" },
                 "3125259949": { status: "lulus", message: "Selamat dan sukses, I Ketut Agus Werdi Dana Putra dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_3125259949.jpg" },
@@ -303,15 +294,22 @@
                 "0122332960": { status: "lulus", message: "Selamat dan sukses, Ni Putu Chandra Cahyani Dewi dinyatakan lulus. Semoga kesuksesan selalu menyertai di jenjang-jenjang pendidikan selanjutnya.", photo: "foto_0122332960.jpg" }
             };
             if (nisn in graduationData) {
+                const studentPhoto = document.createElement("img");
                 studentPhoto.src = graduationData[nisn].photo;
-                resultText.innerHTML = `${graduationData[nisn].message}`;
+                studentPhoto.alt = "Foto Siswa";
+                studentPhotoContainer.innerHTML = "";
+                studentPhotoContainer.appendChild(studentPhoto);
+                statusText.innerHTML = "LULUS";
+                resultText.innerHTML = graduationData[nisn].message;
+                greetingText.innerHTML = "Salam berbahagia keluarga SDN 2 Duda Timur";
                 modal.style.display = "block";
                 createConfetti();
             } else {
-                studentPhoto.src = "";
-                resultText.innerHTML = "NISN tidak ditemukan. Silakan periksa kembali atau hubungi sekolah.";
+                studentPhotoContainer.innerHTML = "";
+                statusText.innerHTML = "";
+                resultText.innerHTML = "NISN tidak ditemukan, mohon periksa kembali NISN yang anda input.";
+                greetingText.innerHTML = "";
                 modal.style.display = "block";
-                createConfetti();
             }
         }
         function closeModal() {
