@@ -43,6 +43,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
         }
         h1, h2 {
             color: #1a2a44;
@@ -52,6 +53,7 @@
             padding: 15px;
             border: 1px solid #2e4057;
             border-radius: 5px;
+            display: none; /* Sembunyikan form sampai countdown selesai */
         }
         .graduation-check label {
             font-weight: bold;
@@ -73,6 +75,57 @@
         .graduation-check button:hover {
             background-color: #4a6fa5;
         }
+        /* Countdown Styling */
+        .countdown {
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2e4057, #4a6fa5);
+            color: white; /* Ubah warna tulisan jadi putih */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .countdown h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.3); /* Latar transparan untuk judul */
+            padding: 5px;
+            border-radius: 5px;
+            color: white; /* Judul putih */
+        }
+        .countdown .time-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .countdown .time {
+            font-size: 2.5em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.2); /* Latar transparan untuk angka */
+            border-radius: 5px;
+            color: white; /* Angka putih */
+        }
+        .countdown .label {
+            font-size: 1.2em;
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.3); /* Latar transparan untuk label */
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: white; /* Label putih */
+        }
         /* Styling untuk Pop-Up */
         .modal {
             display: none;
@@ -83,21 +136,20 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.5);
-            overflow: auto; /* Tambah overflow auto supaya bisa discroll */
+            overflow: auto;
         }
         .modal-content {
             background-color: white;
-            margin: 5% auto; /* Sesuaikan margin supaya lebih fleksibel */
+            margin: 5% auto;
             padding: 20px;
             border: 1px solid #2e4057;
-            width: 60%; /* Memperlebar modal */
-            max-width: 500px; /* Batas maksimum */
-            min-height: 300px; /* Minimal tinggi */
+            width: 60%;
+            max-width: 500px;
+            min-height: 300px;
             border-radius: 10px;
             text-align: center;
             position: relative;
-            overflow-y: auto; /* Tambah scroll vertical kalau konten panjang */
-            /* Latar bermotif samar */
+            overflow-y: auto;
             background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill="%23d3e0f0" fill-opacity="0.2"%3E%3Ccircle cx="50" cy="50" r="35"/%3E%3Ccircle cx="50" cy="50" r="25"/%3E%3C/g%3E%3C/svg%3E');
         }
         .modal-content img {
@@ -118,7 +170,7 @@
             font-size: 1.2em;
             color: #1a2a44;
             margin: 10px 0;
-            line-height: 1.5; /* Tambah spasi antar baris */
+            line-height: 1.5;
         }
         .modal-content .salam {
             font-size: 1.1em;
@@ -169,7 +221,14 @@
     </header>
     <div class="container">
         <h2>Cek Status Kelulusan</h2>
-        <div class="graduation-check">
+        <div class="countdown" id="countdown">
+            <h2>Pengumuman Kelulusan Akan Segera Hadir!</h2>
+            <div class="time-box"><div class="time" id="days">00</div><span class="label">Hari</span></div>
+            <div class="time-box"><div class="time" id="hours">00</div><span class="label">Jam</span></div>
+            <div class="time-box"><div class="time" id="minutes">00</div><span class="label">Menit</span></div>
+            <div class="time-box"><div class="time" id="seconds">00</div><span class="label">Detik</span></div>
+        </div>
+        <div class="graduation-check" id="graduationCheck">
             <label for="nisn">Masukkan Nomor Induk Siswa Nasional (NISN):</label><br>
             <input type="text" id="nisn" placeholder="Contoh: 0139348737">
             <button onclick="checkGraduation()">Cek Kelulusan</button>
@@ -189,6 +248,31 @@
         <p>© 2025 SDN 2 Duda Timur. Hak cipta dilindungi.</p>
     </footer>
     <script>
+        // Set target waktu (2 Juni 2025, 09:00 WITA = 08:00 WIB)
+        const countdownDate = new Date("June 2, 2025 08:00:00").getTime();
+
+        // Update countdown setiap 1 detik
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("graduationCheck").style.display = "block";
+            }
+        }, 1000);
+
         function checkGraduation() {
             const nisn = document.getElementById("nisn").value;
             const modal = document.getElementById("resultModal");
@@ -233,7 +317,6 @@
         function closeModal() {
             const modal = document.getElementById("resultModal");
             modal.style.display = "none";
-            // Hapus confetti saat modal ditutup
             document.querySelectorAll('.confetti').forEach(confetti => confetti.remove());
         }
         function createConfetti() {
@@ -246,7 +329,6 @@
                 confetti.style.animationDuration = Math.random() * 2 + 3 + "s";
                 document.body.appendChild(confetti);
             }
-            // Hapus confetti setelah animasi selesai
             setTimeout(() => document.querySelectorAll('.confetti').forEach(confetti => confetti.remove()), 5000);
         }
     </script>
