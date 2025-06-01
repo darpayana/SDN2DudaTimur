@@ -27,6 +27,10 @@
             font-size: 2em;
             margin: 10px 0 5px 0;
         }
+        header .school-address {
+            font-size: 1em;
+            margin: 5px 0;
+        }
         header .running-text {
             font-size: 0.9em;
             margin: 5px 0;
@@ -47,6 +51,47 @@
         }
         h2 {
             color: #1a2a44;
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+        .academic-year {
+            font-size: 1.2em;
+            color: #2e4057;
+            margin-bottom: 20px;
+        }
+        .info-section {
+            text-align: left;
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #2e4057;
+            border-radius: 5px;
+            background-color: #f9fbfd;
+        }
+        .info-section.important {
+            background-color: #d3e0f0;
+            border-color: #4a6fa5;
+        }
+        .info-section h3 {
+            color: #1a2a44;
+            margin-bottom: 10px;
+        }
+        .info-section.important h3 {
+            color: #4a6fa5;
+        }
+        .info-section p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+        .info-section.important p,
+        .info-section.important li {
+            color: #2e4057;
+        }
+        .info-section ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .info-section li {
+            margin: 5px 0;
         }
         .graduation-check {
             margin-top: 20px;
@@ -71,9 +116,26 @@
             padding: 8px 15px;
             border-radius: 5px;
             cursor: pointer;
+            display: block;
+            margin: 10px auto;
         }
         .graduation-check button:hover {
             background-color: #4a6fa5;
+        }
+        .graduation-check .instructions {
+            font-size: 0.9em;
+            color: #4a6fa5;
+            margin-top: 5px;
+        }
+        .warning {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 5px;
+            color: #856404;
+            font-size: 0.9em;
+            text-align: center;
         }
         .countdown {
             margin-top: 20px;
@@ -212,12 +274,28 @@
     <header>
         <img src="logo.png" alt="Logo SDN 2 Duda Timur">
         <div class="school-name">SDN 2 Duda Timur</div>
+        <div class="school-address">Banjar Dinas Pesangkan Anyar, Desa Duda Timur, Kecamatan Selat, Kabupaten Karangasem</div>
         <div class="running-text">
             <marquee behavior="scroll" direction="left" scrollamount="5">"Dasar Mantra Santi - Cerdas Berkarakter Mandiri Terampil Santu dan Berbudi Pekerti"</marquee>
         </div>
     </header>
     <div class="container">
-        <h2>Cek Status Kelulusan</h2>
+        <h2>PENGUMUMAN KELULUSAN</h2>
+        <div class="academic-year">Tahun Ajaran 2024/2025</div>
+        <div class="info-section">
+            <h3>Informasi Pengumuman Kelulusan</h3>
+            <p>Dengan mengucapkan puji syukur kehadapan Ida Sang Hyang Widhi Wasa / Tuhan Yang Maha Esa, SDN 2 Duda Timur dengan ini mengumumkan hasil kelulusan siswa kelas VI untuk Tahun Ajaran 2024/2025.</p>
+            <p>Pengumuman kelulusan ini merupakan hasil dari proses evaluasi belajar yang telah dilaksanakan selama tahun ajaran berlangsung, meliputi penilaian harian, penilaian tengah semester, penilaian akhir semester, dan ujian sekolah.</p>
+            <p>Untuk melihat hasil kelulusan, siswa diminta untuk login menggunakan NISN yang telah terdaftar. Hasil kelulusan akan menampilkan status kelulusan dari siswa bersangkutan.</p>
+        </div>
+        <div class="info-section important">
+            <h3>Informasi Penting</h3>
+            <ul>
+                <li>Penandatanganan dan Pengambilan Ijazah menunggu pengumuman lebih lanjut.</li>
+                <li>Siswa wajib mengembalikan semua sarana sekolah seperti buku-buku yang dipinjam selama mengikuti pembelajaran di SDN 2 Duda Timur.</li>
+                <li>Untuk informasi lebih lanjut, silakan menghubungi pihak sekolah.</li>
+            </ul>
+        </div>
         <div class="countdown" id="countdown">
             <h2>Pengumuman Kelulusan Akan Segera Hadir!</h2>
             <div class="time-box"><div class="time" id="days">00</div><span class="label">Hari</span></div>
@@ -227,8 +305,12 @@
         </div>
         <div class="graduation-check" id="graduationCheck">
             <label for="nisn">Masukkan Nomor Induk Siswa Nasional (NISN):</label><br>
-            <input type="text" id="nisn" placeholder="Contoh: 0139348737">
+            <input type="text" id="nisn" placeholder="Contoh: 0139348737"><br>
             <button onclick="checkGraduation()">Cek Kelulusan</button>
+            <div class="instructions">Masukan NISN untuk melihat hasil kelulusan</div>
+        </div>
+        <div class="warning">
+            Jika ada perbedaan hasil pengumuman online dan manual, maka yang menjadi acuan adalah dokumen kelulusan yang sudah disahkan dan ditanda tangani oleh Kepala Sekolah.
         </div>
     </div>
     <div id="resultModal" class="modal">
