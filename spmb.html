@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDN 2 Duda Timur - SPMB 2025/2026</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e6f0fa;
+            color: #1a2a44; /* Biru navy tua */
+        }
+        header {
+            background: linear-gradient(135deg, #1a2a44, #2e4057); /* Gradasi biru navy */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        header img {
+            max-width: 120px;
+            height: auto;
+        }
+        header .school-name {
+            font-family: Georgia, serif; /* Font elegan */
+            font-size: 2em;
+            margin: 10px 0 5px 0;
+        }
+        header .school-address {
+            font-size: 1em;
+            margin: 5px 0;
+        }
+        header .running-text {
+            font-size: 0.9em;
+            margin: 5px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        header .running-text marquee {
+            display: inline-block;
+        }
+        nav {
+            background-color: #2e4057; /* Biru navy lebih gelap */
+            display: block;
+        }
+        nav::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        nav a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: #4a6fa5; /* Biru muda saat hover */
+            color: white;
+        }
+        .dropdown {
+            float: left;
+            position: relative;
+        }
+        .dropdown .dropbtn {
+            color: white;
+            padding: 14px 20px;
+            font-size: 1.1em;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #2e4057;
+            width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .dropdown-content a {
+            float: none;
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #4a6fa5;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .dropdown:hover .dropbtn {
+            background-color: #4a6fa5;
+        }
+        .container {
+            width: 85%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .hero-section {
+            text-align: center;
+            padding: 20px 0;
+            background: linear-gradient(135deg, #4a6fa5, #2e4057);
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .hero-section h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-family: Georgia, serif;
+        }
+        .hero-section p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #ff6f61; /* Warna oranye cerah untuk CTA */
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #ff8c7a;
+            transform: scale(1.05);
+        }
+        .info-section {
+            margin-bottom: 20px;
+        }
+        .info-section h2 {
+            color: #1a2a44;
+            border-bottom: 2px solid #4a6fa5;
+            padding-bottom: 5px;
+        }
+        .info-section p, .info-section ul {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        .info-section ul {
+            padding-left: 20px;
+        }
+        .info-section ul li {
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #1a2a44;
+            color: white;
+            text-align: center;
+            padding: 3px;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo SDN 2 Duda Timur">
+        <div class="school-name">SDN 2 Duda Timur</div>
+        <div class="school-address">Banjar Dinas Pesangkan Anyar, Desa Duda Timur, Kecamatan Selat, Kabupaten Karangasem</div>
+        <div class="running-text">
+            <marquee behavior="scroll" direction="left" scrollamount="5">"Dasar Mantra Santi - Cerdas Berkarakter Mandiri Terampil Santu dan Berbudi Pekerti"</marquee>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Beranda</a>
+        <a href="index.html#tentang">Tentang</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">Kegiatan</a>
+            <div class="dropdown-content">
+                <a href="kelulusan.html" target="_self">Kelulusan</a>
+                <a href="spmb.html" target="_self">SPMB</a>
+            </div>
+        </div>
+        <a href="galeri.html">Galeri</a>
+        <a href="index.html#kontak">Kontak</a>
+    </nav>
+    <div class="container">
+        <div class="hero-section">
+            <h1>Penerimaan Peserta Didik Baru (PPDB) 2025/2026</h1>
+            <p>SDN 2 Duda Timur - Siap Membentuk Generasi Cerdas dan Berkarakter!</p>
+            <a href="#pendaftaran" class="cta-button">Daftar Sekarang</a>
+        </div>
+        <div class="info-section" id="pendaftaran">
+            <h2>Jadwal Pendaftaran</h2>
+            <p><strong>1 Juni 2025 - 15 Juni 2025</strong><br>Pendaftaran dibuka setiap hari kerja pukul 08:00 - 12:00 WITA di SDN 2 Duda Timur.</p>
+        </div>
+        <div class="info-section">
+            <h2>Syarat Pendaftaran</h2>
+            <ul>
+                <li>Usia 6-7 tahun per 1 Juli 2025.</li>
+                <li>Fotokopi Akta Kelahiran (1 lembar).</li>
+                <li>Fotokopi Kartu Keluarga (1 lembar).</li>
+                <li>Pas foto ukuran 3x4 (2 lembar).</li>
+            </ul>
+        </div>
+        <div class="info-section">
+            <h2>Alur Pendaftaran</h2>
+            <ol>
+                <li>Ambil formulir pendaftaran di SDN 2 Duda Timur atau unduh melalui website resmi.</li>
+                <li>Isi formulir dengan lengkap dan lampirkan dokumen yang diperlukan.</li>
+                <li>Serahkan formulir dan dokumen ke panitia PPDB di SDN 2 Duda Timur.</li>
+                <li>Pengumuman hasil seleksi akan diumumkan pada 20 Juni 2025 melalui website dan papan pengumuman sekolah.</li>
+            </ol>
+        </div>
+        <div class="info-section">
+            <h2>Kontak Panitia</h2>
+            <p>Untuk informasi lebih lanjut, hubungi:<br>
+            <strong>Ibu Ni Wayan Widastri</strong><br>
+            Telepon: 0852-3921-0821<br>
+            Email: sdn2dudatimur@gmail.com</p>
+        </div>
+    </div>
+    <footer>
+        <p>© 2025 SDN 2 Duda Timur. Hak cipta dilindungi.</p>
+    </footer>
+</body>
+</html>

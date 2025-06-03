@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDN 2 Duda Timur - Galeri</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e6f0fa;
+            color: #1a2a44; /* Biru navy tua */
+        }
+        header {
+            background: linear-gradient(135deg, #1a2a44, #2e4057); /* Gradasi biru navy */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        header img {
+            max-width: 120px;
+            height: auto;
+        }
+        header .school-name {
+            font-family: Georgia, serif; /* Font elegan */
+            font-size: 2em; /* Agak besar */
+            margin: 10px 0 5px 0;
+        }
+        header .school-address {
+            font-size: 1em;
+            margin: 5px 0;
+        }
+        header .running-text {
+            font-size: 0.9em;
+            margin: 5px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        header .running-text marquee {
+            display: inline-block;
+        }
+        nav {
+            background-color: #2e4057; /* Biru navy lebih gelap */
+            display: block; /* Pastikan nav terlihat */
+        }
+        /* Clearfix untuk nav agar mengandung float */
+        nav::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        nav a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Transisi halus */
+        }
+        nav a:hover {
+            background-color: #4a6fa5; /* Biru muda saat hover */
+            color: white;
+        }
+        /* Dropdown untuk Kegiatan */
+        .dropdown {
+            float: left;
+            position: relative; /* Pastikan posisi relatif untuk anak */
+        }
+        .dropdown .dropbtn {
+            color: white;
+            padding: 14px 20px;
+            font-size: 1.1em;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%; /* Muncul tepat di bawah tombol */
+            left: 0;
+            background-color: #2e4057;
+            width: 200px; /* Lebar tetap untuk stabilitas */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1000; /* Pastikan di atas elemen lain */
+        }
+        .dropdown-content a {
+            float: none;
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #4a6fa5;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block; /* Pastikan muncul saat hover */
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .dropdown:hover .dropbtn {
+            background-color: #4a6fa5;
+        }
+        .container {
+            width: 85%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        h1, h2 {
+            color: #1a2a44;
+        }
+        .gallery-item {
+            margin-bottom: 20px;
+        }
+        .gallery-item iframe {
+            width: 100%;
+            height: 315px;
+            border: none;
+            border-radius: 8px;
+        }
+        .gallery-item p {
+            margin-top: 10px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        footer {
+            background-color: #1a2a44;
+            color: white;
+            text-align: center;
+            padding: 3px; /* Kecilkan padding */
+            width: 100%;
+            margin-top: 20px;
+            font-size: 0.8em; /* Kecilkan font */
+        }
+        /* Animasi Fade-in */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo SDN 2 Duda Timur">
+        <div class="school-name">SDN 2 Duda Timur</div>
+        <div class="school-address">Banjar Dinas Pesangkan Anyar, Desa Duda Timur, Kecamatan Selat, Kabupaten Karangasem</div>
+        <div class="running-text">
+            <marquee behavior="scroll" direction="left" scrollamount="5">"Dasar Mantra Santi - Cerdas Berkarakter Mandiri Terampil Santu dan Berbudi Pekerti"</marquee>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Beranda</a>
+        <a href="index.html#tentang">Tentang</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">Kegiatan</a>
+            <div class="dropdown-content">
+                <a href="kelulusan.html" target="_self">Kelulusan</a>
+                <a href="spmb.html" target="_self">SPMB</a>
+            </div>
+        </div>
+        <a href="galeri.html">Galeri</a>
+        <a href="index.html#kontak">Kontak</a>
+    </nav>
+    <div class="container">
+        <h1>Galeri Kegiatan SDN 2 Duda Timur</h1>
+        <div class="gallery-item">
+            <h2>Kegiatan Perayaan Bulan Bahasa Bali VII Tahun 2025</h2>
+            <iframe src="https://www.youtube.com/embed/id4oQIO0ZR4" title="Kegiatan Perayaan Bulan Bahasa Bali VII Tahun 2025" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>SDN 2 Duda Timur ikut serta merayakan Bulan Bahasa Bali VII Tahun 2025. Beberapa kegiatan lomba dilaksanakan di tingkat sekolah, simak keseruan dan kegembiraan siswa-siswi kami melalui video di atas.</p>
+        </div>
+        <div class="gallery-item">
+            <h2>Lomba Karaoke SPACE ON 25</h2>
+            <iframe src="https://www.youtube.com/embed/JgoYDgNz7pQ" title="Lomba Karaoke SPACE ON 25" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Ni Made Raya Rasmika, siswi SDN 2 Duda Timur ikut ambil bagian dalam ajang lomba karaoke yang dilaksanakan oleh SMP Negeri 1 Amlapura dengan membawakan 2 lagu, salah satunya adalah lagu Ambilkan Bulan Bu.</p>
+        </div>
+        <div class="gallery-item">
+            <h2>Senam Anak Indonesia Hebat</h2>
+            <iframe src="https://www.youtube.com/embed/g9trC-myL8Y" title="Senam Anak Indonesia Hebat" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Keceriaan latihan bersama Senam Anak Indonesia Hebat di tingkat gugus 1 Kecamatan Selat. Kolaborasi guru-guru PJOK hebat gugus 1 dengan anak-anak dari masing-masing sekolah imbas yang nantinya akan berperan aktif untuk mengajak warga sekolah lainnya untuk mengembangkan pola hidup altif dan sehat.</p>
+        </div>
+        <div class="gallery-item">
+            <h2>Dokumentasi ANBK 2024</h2>
+            <iframe src="https://www.youtube.com/embed/BC9a7XiEMXc" title="Dokumentasi ANBK 2024" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Kali ini tampilan dokumentasi coba dikemas dalam bentuk vlog oleh Bapak Guru PJOK kami, tonton keseruan vlog ANBK SDN 2 Duda Timur melalui video di atas.</p>
+        </div>
+        <div class="gallery-item">
+            <h2>Juara 2 Gerak Jalan SD Putra Kecamatan Selat Tahun 2024</h2>
+            <iframe src="https://www.youtube.com/embed/ZdD1YBfR0nM" title="Juara 2 Gerak Jalan SD Putra Kecamatan Selat Tahun 2024" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Tidak mau kalah dari tim Srikandi SDN 2 Duda Timur, tim Wiprasa pun mampu memperoleh Juara 2 dalam ajang lomba gerak jalan SD tingkat Kecamatan Selat Tahun 2024.</p>
+        </div>
+        <div class="gallery-item">
+            <h2>Juara 1 Gerak Jalan SD Putri Kecamatan Selat Tahun 2024</h2>
+            <iframe src="https://www.youtube.com/embed/KQGxy66C8Z0" title="Juara 1 Gerak Jalan SD Putri Kecamatan Selat Tahun 2024" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Perstasi yang sangat membanggakan untuk SDN 2 Duda Timur, tim gerak jalan putri "Srikandi SDN 2 Duda Timur" berhasil memperoleh Juara 1 dalam lomba gerak jalan SD tingkat Kecamatan Selat Tahun 2024.</p>
+        </div>
+        <div class="gallery-item">
+            <h2>50 Tahun SDN 2 Duda Timur</h2>
+            <iframe src="https://www.youtube.com/embed/gNjnBEbcNk4" title="50 Tahun SDN 2 Duda Timur" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Tahun 2024 Menjadi tahun emas bagi SDN 2 Duda Timur, di tahun ini pula SDN 2 Duda Timur genap berusia 50 Tahun. Tahun 1974 merupakan tahun berdirinya SDN 2 Duda Timur, perayaan sederhana penuh makna dilaksanakan sekolah pada tahun ini. Semoga SDN 2 Duda Timur semakin jaya ke depannya.</p>
+        </div>
+        <div class="gallery-item">
+            <h2>Bulan Bahasa Bali VI Tahun 2024</h2>
+            <iframe src="https://www.youtube.com/embed/SbItphl4u7c" title="Bulan Bahasa Bali VI Tahun 2024" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Bulan Bahasa Bali VI dirayakan oleh segenap warga sekolah SDN 2 Duda Timur, beragam lomba terlaksana berkat dukungan dari seluruh warga sekolah mulai dari siswa, guru-guru, kepala sekolah, pengawas sekolah, komite dan orang tua siswa.</p>
+        </div>
+        <div class="gallery-item">
+            <h2>Juara 2 Lomba Cipta Lagu Balai Bahasa Provinsi Bali Tahun 2023</h2>
+            <iframe src="https://www.youtube.com/embed/KEx0ShqKsuE" title="Juara 2 Lomba Cipta Lagu Balai Bahasa Provinsi Bali Tahun 2023" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>I Gede Tio Mahardika membawakan lagu hasil karya kolaborasi antara guru-guru, kepala sekolah dan salah seorang orang tua siswa. Lagu ini berhasil mendapatkan Juara 2 dalam ajang lomba cipta lagu bertemakan Budaya Bali yang diselenggarakan oleh Balai Bahasa Provinsi Bali tahun 2023.</p>
+        </div>
+    </div>
+    <footer>
+        <p>© 2025 SDN 2 Duda Timur. Hak cipta dilindungi.</p>
+    </footer>
+</body>
+</html>
