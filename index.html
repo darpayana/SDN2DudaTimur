@@ -43,7 +43,13 @@
         }
         nav {
             background-color: #2e4057; /* Biru navy lebih gelap */
-            overflow: hidden;
+            display: block; /* Pastikan nav terlihat */
+        }
+        /* Clearfix untuk nav agar mengandung float */
+        nav::after {
+            content: "";
+            display: table;
+            clear: both;
         }
         nav a {
             float: left;
@@ -61,7 +67,7 @@
         /* Dropdown untuk Kegiatan */
         .dropdown {
             float: left;
-            position: relative;
+            position: relative; /* Pastikan posisi relatif untuk anak */
         }
         .dropdown .dropbtn {
             color: white;
@@ -77,12 +83,9 @@
             top: 100%; /* Muncul tepat di bawah tombol */
             left: 0;
             background-color: #2e4057;
-            width: 100%; /* Lebar sama dengan tombol utama */
+            width: 200px; /* Lebar tetap untuk stabilitas */
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease; /* Animasi muncul */
+            z-index: 1000; /* Pastikan di atas elemen lain */
         }
         .dropdown-content a {
             float: none;
@@ -96,7 +99,7 @@
             background-color: #4a6fa5;
         }
         .dropdown:hover .dropdown-content {
-            display: block;
+            display: block; /* Pastikan muncul saat hover */
             opacity: 1;
             transform: translateY(0);
         }
