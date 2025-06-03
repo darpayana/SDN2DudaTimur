@@ -13,10 +13,11 @@
             color: #1a2a44; /* Biru navy tua */
         }
         header {
-            background-color: #1a2a44; /* Biru navy */
+            background: linear-gradient(135deg, #1a2a44, #2e4057); /* Gradasi biru navy */
             color: white;
             text-align: center;
             padding: 10px;
+            animation: fadeIn 1s ease-in-out;
         }
         header img {
             max-width: 120px;
@@ -27,13 +28,18 @@
             font-size: 2em; /* Agak besar */
             margin: 10px 0 5px 0;
         }
-        header h1 {
-            font-size: 1.5em;
+        header .school-address {
+            font-size: 1em;
             margin: 5px 0;
         }
-        header p {
+        header .running-text {
             font-size: 0.9em;
             margin: 5px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        header .running-text marquee {
+            display: inline-block;
         }
         nav {
             background-color: #2e4057; /* Biru navy lebih gelap */
@@ -46,10 +52,56 @@
             padding: 14px 20px;
             text-decoration: none;
             font-size: 1.1em;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Transisi halus */
         }
         nav a:hover {
             background-color: #4a6fa5; /* Biru muda saat hover */
             color: white;
+        }
+        /* Dropdown untuk Kegiatan */
+        .dropdown {
+            float: left;
+            position: relative;
+        }
+        .dropdown .dropbtn {
+            color: white;
+            padding: 14px 20px;
+            font-size: 1.1em;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%; /* Muncul tepat di bawah tombol */
+            left: 0;
+            background-color: #2e4057;
+            width: 100%; /* Lebar sama dengan tombol utama */
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease; /* Animasi muncul */
+        }
+        .dropdown-content a {
+            float: none;
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown-content a:hover {
+            background-color: #4a6fa5;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .dropdown:hover .dropbtn {
+            background-color: #4a6fa5;
         }
         .container {
             width: 85%;
@@ -58,11 +110,13 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            animation: fadeIn 1.5s ease-in-out;
         }
         .hero img {
             width: 100%;
             height: auto;
             border-radius: 8px;
+            animation: pulse 2s infinite ease-in-out;
         }
         h1, h2 {
             color: #1a2a44;
@@ -71,11 +125,21 @@
             background-color: #1a2a44;
             color: white;
             text-align: center;
-            padding: 5px;
-            position: fixed;
-            bottom: 0;
+            padding: 3px; /* Kecilkan padding */
             width: 100%;
-            font-size: 0.9em;
+            margin-top: 20px;
+            font-size: 0.8em; /* Kecilkan font */
+        }
+        /* Animasi Fade-in */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        /* Animasi Pulse untuk Gambar Hero */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
@@ -83,14 +147,22 @@
     <header>
         <img src="logo.png" alt="Logo SDN 2 Duda Timur">
         <div class="school-name">SDN 2 Duda Timur</div>
-        <h1>SDN 2 Duda Timur</h1>
-        <p>"Dasar Mantra Santi" - Cerdas Berkarakter Mandiri Terampil Santu dan Berbudi Pekerti</p>
+        <div class="school-address">Banjar Dinas Pesangkan Anyar, Desa Duda Timur, Kecamatan Selat, Kabupaten Karangasem</div>
+        <div class="running-text">
+            <marquee behavior="scroll" direction="left" scrollamount="5">"Dasar Mantra Santi - Cerdas Berkarakter Mandiri Terampil Santu dan Berbudi Pekerti"</marquee>
+        </div>
     </header>
     <nav>
         <a href="#beranda">Beranda</a>
         <a href="#tentang">Tentang</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">Kegiatan</a>
+            <div class="dropdown-content">
+                <a href="kelulusan.html" target="_self">Kelulusan</a>
+                <a href="spmb.html" target="_self">SPMB</a>
+            </div>
+        </div>
         <a href="#kontak">Kontak</a>
-        <a href="kelulusan.html" target="_self">Kelulusan</a> <!-- Mengarah ke file terpisah -->
     </nav>
     <div class="container">
         <div class="hero" id="beranda">
