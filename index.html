@@ -10,10 +10,10 @@
             margin: 0;
             padding: 0;
             background-color: #e6f0fa;
-            color: #1a2a44; /* Biru navy tua */
+            color: #1a2a44;
         }
         header {
-            background: linear-gradient(135deg, #1a2a44, #2e4057); /* Gradasi biru navy */
+            background: linear-gradient(135deg, #1a2a44, #2e4057);
             color: white;
             text-align: center;
             padding: 10px;
@@ -24,8 +24,8 @@
             height: auto;
         }
         header .school-name {
-            font-family: Georgia, serif; /* Font elegan */
-            font-size: 2em; /* Agak besar */
+            font-family: Georgia, serif;
+            font-size: 2em;
             margin: 10px 0 5px 0;
         }
         header .school-address {
@@ -42,10 +42,9 @@
             display: inline-block;
         }
         nav {
-            background-color: #2e4057; /* Biru navy lebih gelap */
-            display: block; /* Pastikan nav terlihat */
+            background-color: #2e4057;
+            display: block;
         }
-        /* Clearfix untuk nav agar mengandung float */
         nav::after {
             content: "";
             display: table;
@@ -58,16 +57,15 @@
             padding: 14px 20px;
             text-decoration: none;
             font-size: 1.1em;
-            transition: background-color 0.3s ease, color 0.3s ease; /* Transisi halus */
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         nav a:hover {
-            background-color: #4a6fa5; /* Biru muda saat hover */
+            background-color: #4a6fa5;
             color: white;
         }
-        /* Dropdown untuk Kegiatan */
         .dropdown {
             float: left;
-            position: relative; /* Pastikan posisi relatif untuk anak */
+            position: relative;
         }
         .dropdown .dropbtn {
             color: white;
@@ -80,12 +78,12 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            top: 100%; /* Muncul tepat di bawah tombol */
+            top: 100%;
             left: 0;
             background-color: #2e4057;
-            width: 200px; /* Lebar tetap untuk stabilitas */
+            width: 200px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1000; /* Pastikan di atas elemen lain */
+            z-index: 1000;
         }
         .dropdown-content a {
             float: none;
@@ -99,7 +97,7 @@
             background-color: #4a6fa5;
         }
         .dropdown:hover .dropdown-content {
-            display: block; /* Pastikan muncul saat hover */
+            display: block;
             opacity: 1;
             transform: translateY(0);
         }
@@ -115,34 +113,25 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             animation: fadeIn 1.5s ease-in-out;
         }
-        .hero img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            animation: pulse 2s infinite ease-in-out;
-        }
-        h1, h2 {
+        h1 {
             color: #1a2a44;
+            text-align: center;
+        }
+        section {
+            margin-bottom: 20px;
         }
         footer {
             background-color: #1a2a44;
             color: white;
             text-align: center;
-            padding: 3px; /* Kecilkan padding */
+            padding: 3px;
             width: 100%;
             margin-top: 20px;
-            font-size: 0.8em; /* Kecilkan font */
+            font-size: 0.8em;
         }
-        /* Animasi Fade-in */
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
-        }
-        /* Animasi Pulse untuk Gambar Hero */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
         }
     </style>
 </head>
@@ -156,7 +145,7 @@
         </div>
     </header>
     <nav>
-        <a href="#beranda">Beranda</a>
+        <a href="index.html">Beranda</a>
         <a href="#tentang">Tentang</a>
         <div class="dropdown">
             <a href="#" class="dropbtn">Kegiatan</a>
@@ -165,16 +154,19 @@
                 <a href="spmb.html" target="_self">SPMB</a>
             </div>
         </div>
+        <a href="galeri.html">Galeri</a>
         <a href="#kontak">Kontak</a>
     </nav>
     <div class="container">
-        <div class="hero" id="beranda">
-            <img src="gambar_sekolah.jpg" alt="Lingkungan Sekolah SDN 2 Duda Timur">
-        </div>
-        <h2 id="tentang">Tentang Sekolah</h2>
-        <p>SDN 2 Duda Timur merupakan salah satu sekolah dasar yang terletak di Desa Duda Timur, Kecamatan Selat, Kabupaten Karangasem, Provinsi Bali. SDN 2 Duda Timur didirikan sejak tahun 1974, dari semenjak berdirinya SDN 2 Duda Timur sudah menghasilkan lulusan yang memiliki kompetensi dasar yang siap dikembangkan di tingkat selanjutnya. Pada 3 tahun terakhir SDN 2 Duda Timur secara berturut-turut memperoleh apresiasi dari Kementerian melalui BOSP Kinerja untuk sekolah berkemajuan terbaik.</p>
-        <h2 id="kontak">Kontak Kami</h2>
-        <p>Email: sdn2dudatimur@gmail.com</p>
+        <h1>Selamat Datang di SDN 2 Duda Timur</h1>
+        <section id="tentang">
+            <h2>Tentang Kami</h2>
+            <p>SDN 2 Duda Timur adalah sekolah dasar yang berkomitmen untuk mendidik generasi cerdas, berkarakter, dan berbudaya. Terletak di Banjar Dinas Pesangkan Anyar, kami menyediakan lingkungan belajar yang kondusif.</p>
+        </section>
+        <section id="kontak">
+            <h2>Kontak Kami</h2>
+            <p>Hubungi kami di: sdn2dudatimur@gmail.com atau telepon 0852-3921-0821 (Ibu Ni Wayan Widastri).</p>
+        </section>
     </div>
     <footer>
         <p>© 2025 SDN 2 Duda Timur. Hak cipta dilindungi.</p>
